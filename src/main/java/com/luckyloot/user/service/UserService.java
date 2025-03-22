@@ -2,10 +2,10 @@ package com.luckyloot.user.service;
 
 import com.luckyloot.exception.ResourceAlreadyTakenException;
 import com.luckyloot.exception.ResourceNotFoundException;
-import com.luckyloot.response.ApiResponse;
-import com.luckyloot.user.dto.request.CreateUserRequest;
-import com.luckyloot.user.dto.response.ConfirmationUserResponse;
-import com.luckyloot.user.dto.response.UserResponse;
+import com.luckyloot.exception.UserNotFoundException;
+import com.luckyloot.user.dto.request.CreateUserDto;
+import com.luckyloot.user.dto.response.ConfirmedUserDto;
+import com.luckyloot.user.dto.response.UserDto;
 import com.luckyloot.user.model.Role;
 import com.luckyloot.user.model.User;
 import com.luckyloot.user.repository.UserRepository;
@@ -32,10 +32,10 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
-                .orElseThrow(()->new ResourceNotFoundException(String.format(USER_NOT_FOUND_MESSAGE,email)));
+                .orElseThrow(UserNotFoundException::new);
     }
 
-    public ApiResponse<UserResponse> register(CreateUserRequest request){
+    public UserDto register(CreateUserDto request){
 
         User user = new User(request.getUsername(),request.getEmail(),bCryptPasswordEncoder.encode(request.getPassword()), Role.USER);
 
@@ -48,17 +48,13 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         confirmationTokenService.createToken(user);
 
-        UserResponse userResponse = new UserResponse(user.getId(),user.getUsername(),user.getEmail(),user.getRole());
-
-        return new ApiResponse<UserResponse>("User registered successfully",userResponse);
+        return new UserDto(user.getId(),user.getUsername(),user.getEmail(),user.getRole());
     }
 
-    public ApiResponse<ConfirmationUserResponse> confirmRegistration(String token){
+    public ConfirmedUserDto confirmRegistration(String token){
 
         confirmationTokenService.confirmToken(token);
 
-        ConfirmationUserResponse confirmationUserResponse = new ConfirmationUserResponse(LocalDateTime.now());
-
-        return new ApiResponse<ConfirmationUserResponse>("User confirmed",confirmationUserResponse);
+        return new ConfirmedUserDto(LocalDateTime.now());
     }
 }

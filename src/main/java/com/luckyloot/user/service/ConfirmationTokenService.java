@@ -45,7 +45,7 @@ public class ConfirmationTokenService {
 
     public void confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenRepository.findByToken(token)
-                .orElseThrow(()->new ResourceNotFoundException("Token not found"));
+                .orElseThrow(()->new ResourceNotFoundException(ConfirmationToken.class, token));
 
         if(confirmationToken.getConfirmedTime() != null){
             throw new IllegalStateException("Account already confirmed");

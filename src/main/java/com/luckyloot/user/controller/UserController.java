@@ -1,11 +1,11 @@
 package com.luckyloot.user.controller;
 
 import com.luckyloot.response.ApiResponse;
-import com.luckyloot.user.dto.request.AuthenticationRequest;
-import com.luckyloot.user.dto.request.CreateUserRequest;
-import com.luckyloot.user.dto.response.AuthenticationResponse;
-import com.luckyloot.user.dto.response.ConfirmationUserResponse;
-import com.luckyloot.user.dto.response.UserResponse;
+import com.luckyloot.user.dto.request.AuthenticateUserDto;
+import com.luckyloot.user.dto.request.CreateUserDto;
+import com.luckyloot.user.dto.response.AuthenticatedUserDto;
+import com.luckyloot.user.dto.response.ConfirmedUserDto;
+import com.luckyloot.user.dto.response.UserDto;
 import com.luckyloot.user.service.AuthenticationService;
 import com.luckyloot.user.service.UserService;
 import jakarta.validation.Valid;
@@ -24,17 +24,20 @@ public class UserController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<UserResponse>> register(@Valid @RequestBody CreateUserRequest request){
-        return ResponseEntity.ok(userService.register(request));
+    public ResponseEntity<ApiResponse<UserDto>> register(@Valid @RequestBody CreateUserDto request) {
+        UserDto userDto = userService.register(request);
+        return ResponseEntity.ok(ApiResponse.success(userDto));
     }
 
     @GetMapping("/confirm")
-    public ResponseEntity<ApiResponse<ConfirmationUserResponse>> confirmRegistration(@RequestParam String token){
-        return ResponseEntity.ok(userService.confirmRegistration(token));
+    public ResponseEntity<ApiResponse<ConfirmedUserDto>> confirmRegistration(@RequestParam String token) {
+        ConfirmedUserDto confirmedUserDto = userService.confirmRegistration(token);
+        return ResponseEntity.ok(ApiResponse.success(confirmedUserDto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<AuthenticationResponse>> login(@Valid @RequestBody AuthenticationRequest request){
-        return ResponseEntity.ok(authenticationService.Authenticate(request));
+    public ResponseEntity<ApiResponse<AuthenticatedUserDto>> login(@Valid @RequestBody AuthenticateUserDto request) {
+        AuthenticatedUserDto authenticatedUserDto = authenticationService.Authenticate(request);
+        return ResponseEntity.ok(ApiResponse.success(authenticatedUserDto));
     }
 }

@@ -1,0 +1,7 @@
+{
+  "status": "error",
+  "message": [
+    "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+  ],
+  "timestamp": "2025-03-22 13:45:27"
+}

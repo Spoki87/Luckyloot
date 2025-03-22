@@ -1,9 +1,9 @@
 package com.luckyloot.user.service;
 
 import com.luckyloot.exception.ResourceNotFoundException;
-import com.luckyloot.response.ApiResponse;
-import com.luckyloot.user.dto.request.AuthenticationRequest;
-import com.luckyloot.user.dto.response.AuthenticationResponse;
+import com.luckyloot.exception.UserNotFoundException;
+import com.luckyloot.user.dto.request.AuthenticateUserDto;
+import com.luckyloot.user.dto.response.AuthenticatedUserDto;
 import com.luckyloot.user.model.User;
 import com.luckyloot.user.repository.UserRepository;
 import com.luckyloot.user.security.config.JwtService;
@@ -20,16 +20,14 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
-    public ApiResponse<AuthenticationResponse> Authenticate(AuthenticationRequest request){
+    public AuthenticatedUserDto Authenticate(AuthenticateUserDto request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ResourceNotFoundException("Invalid username or password"));
+                .orElseThrow(UserNotFoundException::new);
 
         String jwtToken = jwtService.generateToken(user);
 
-        AuthenticationResponse authenticationResponse = new AuthenticationResponse(user.getRole(),jwtToken);
-
-        return new ApiResponse<AuthenticationResponse>("User authenticated",authenticationResponse);
+        return new AuthenticatedUserDto(user.getRole(),jwtToken);
     }
 }

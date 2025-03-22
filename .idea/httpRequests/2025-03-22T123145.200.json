@@ -1,0 +1,10 @@
+{
+  "message": "User registered successfully",
+  "data": {
+    "id": "5c40b4f5-80d0-430a-9ab7-e25d4e0f8a73",
+    "username": "Niber_99",
+    "email": "nibber999@niepodam.pl",
+    "role": "USER"
+  },
+  "timestamp": "2025-03-22 12:31:45"
+}
