@@ -1,0 +1,8 @@
+{
+  "message": "User authenticated",
+  "data": {
+    "role": "USER",
+    "token": "eyJUeXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJyb2xlIjoiVVNFUiIsImlkIjoiOWNiNGZjNWQtZTk3MC00MTQ1LWIyNzktZTMzOThlMTI3OTkxIiwic3ViIjoiZ2lnZXI5OTlAbmllcG9kYW0ucGwiLCJpYXQiOjE3NDA4NDQ2MDMsImV4cCI6MTc0MDg0ODIwM30.RaDh5RRQDLbjb92Jbw-I5r9WPSeOagBLRngZi7iK5rs"
+  },
+  "timestamp": "2025-03-01 16:56:43"
+}
