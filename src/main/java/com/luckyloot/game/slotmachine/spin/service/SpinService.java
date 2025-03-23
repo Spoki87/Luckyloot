@@ -55,7 +55,9 @@ public class SpinService {
                 LocalDateTime.now()
         );
 
-            return spinMapper.toSpinDto(spin);
+        spinRepository.save(spin);
+
+        return spinMapper.toSpinDto(spin);
     }
 
     private List<String> generateSpinSymbols(SlotGame slotGame) {

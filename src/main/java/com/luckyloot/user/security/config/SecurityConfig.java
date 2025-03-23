@@ -3,6 +3,7 @@ package com.luckyloot.user.security.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -22,14 +23,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(registry->{
                     registry.requestMatchers("/api/user/register/**").permitAll();
                     registry.requestMatchers("/api/user/login").permitAll();
                     registry.requestMatchers("/api/user/confirm").permitAll();
-                    registry.requestMatchers("/swagger-ui/**").permitAll();
-                    registry.requestMatchers("/v3/api-docs/**").permitAll();
-
                     registry.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

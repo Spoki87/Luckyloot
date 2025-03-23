@@ -6,10 +6,12 @@ import com.luckyloot.user.model.ConfirmationToken;
 import com.luckyloot.user.model.User;
 import com.luckyloot.user.repository.ConfirmationTokenRepository;
 import com.luckyloot.user.repository.UserRepository;
-import com.luckyloot.utils.HtmlUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -25,6 +27,7 @@ public class ConfirmationTokenService {
     @Value("${app.base-url}")
     private String BASE_URL;
 
+    private final TemplateEngine templateEngine;
 
     public void createToken(User user) {
 
@@ -36,8 +39,10 @@ public class ConfirmationTokenService {
 
         String confirmationLink = String.format("%s/api/user/confirm?token=%s",BASE_URL,token);
 
-        String htmlContent = HtmlUtils.readHtmlContent("templates/confirm_account.html");
-        htmlContent = htmlContent.replaceAll("%LINK%", confirmationLink);
+        Context context = new Context();
+        context.setVariable("confirmationLink", confirmationLink);
+
+        String htmlContent = templateEngine.process("confirm_account", context);
 
         emailSender.send(user.getEmail(), htmlContent,"Confirmation of registration");
     }

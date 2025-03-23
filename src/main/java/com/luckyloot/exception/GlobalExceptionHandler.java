@@ -2,21 +2,26 @@ package com.luckyloot.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.luckyloot.response.ApiResponse;
-import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @ControllerAdvice
 public class GlobalExceptionHandler{
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiResponse<String>> handleAccessDeniedException(AccessDeniedException ex) {
+        ApiResponse<String> response = ApiResponse.error("Access Denied: " + ex.getMessage(), HttpStatus.FORBIDDEN);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
 
     @ExceptionHandler(InvalidBetAmountException.class)
     public ResponseEntity<ApiResponse<String>> handleInvalidBetAmount(InvalidBetAmountException ex) {

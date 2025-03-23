@@ -20,13 +20,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final static String USER_NOT_FOUND_MESSAGE = "USER WITH EMAIL OR USERNAME %s not found";
-
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
-
-
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
