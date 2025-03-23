@@ -22,6 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry->{
                     registry.requestMatchers("/api/user/register/**").permitAll();
                     registry.requestMatchers("/api/user/login").permitAll();

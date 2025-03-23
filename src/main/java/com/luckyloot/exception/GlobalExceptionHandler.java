@@ -2,6 +2,7 @@ package com.luckyloot.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.luckyloot.response.ApiResponse;
+import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ import java.util.Objects;
 
 @ControllerAdvice
 public class GlobalExceptionHandler{
+
+    @ExceptionHandler(InvalidBetAmountException.class)
+    public ResponseEntity<ApiResponse<String>> handleInvalidBetAmount(InvalidBetAmountException ex) {
+        ApiResponse<String> response = ApiResponse.error(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<ApiResponse<String>> handleIllegalStateException(IllegalStateException ex) {

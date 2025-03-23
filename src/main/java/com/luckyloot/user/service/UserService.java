@@ -1,7 +1,6 @@
 package com.luckyloot.user.service;
 
 import com.luckyloot.exception.ResourceAlreadyTakenException;
-import com.luckyloot.exception.ResourceNotFoundException;
 import com.luckyloot.exception.UserNotFoundException;
 import com.luckyloot.user.dto.request.CreateUserDto;
 import com.luckyloot.user.dto.response.ConfirmedUserDto;
