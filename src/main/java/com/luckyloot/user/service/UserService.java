@@ -7,7 +7,6 @@ import com.luckyloot.user.dto.request.ChangePasswordRequest;
 import com.luckyloot.user.dto.request.CreateUserDto;
 import com.luckyloot.user.dto.request.NewPasswordRequest;
 import com.luckyloot.user.dto.request.ResetPasswordRequest;
-import com.luckyloot.user.dto.response.ChangedPasswordResponse;
 import com.luckyloot.user.dto.response.ConfirmedUserDto;
 import com.luckyloot.user.dto.response.UserDto;
 import com.luckyloot.user.model.Role;
