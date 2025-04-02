@@ -38,9 +38,7 @@ C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\confi
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\config\JwtAuthenticationFilter.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\config\JwtService.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\config\SecurityConfig.java
-C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\config\WebConfiguration.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\security\PasswordEncoder.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\service\AuthenticationService.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\service\ConfirmationTokenService.java
 C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\user\service\UserService.java
-C:\Users\patry\desktop\luckyloot\src\main\java\com\luckyloot\utils\HtmlUtils.java

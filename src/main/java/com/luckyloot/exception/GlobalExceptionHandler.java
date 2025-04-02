@@ -17,6 +17,12 @@ import java.util.Objects;
 @ControllerAdvice
 public class GlobalExceptionHandler{
 
+    @ExceptionHandler(NewPasswordException.class)
+    public ResponseEntity<ApiResponse<String>> handleNewPasswordException(NewPasswordException ex){
+        ApiResponse<String> response = ApiResponse.error(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ApiResponse<String>> handleAccessDeniedException(AccessDeniedException ex) {
         ApiResponse<String> response = ApiResponse.error("Access Denied: " + ex.getMessage(), HttpStatus.FORBIDDEN);

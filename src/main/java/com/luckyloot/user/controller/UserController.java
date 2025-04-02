@@ -1,16 +1,18 @@
 package com.luckyloot.user.controller;
 
 import com.luckyloot.response.ApiResponse;
-import com.luckyloot.user.dto.request.AuthenticateUserDto;
-import com.luckyloot.user.dto.request.CreateUserDto;
+import com.luckyloot.user.dto.request.*;
 import com.luckyloot.user.dto.response.AuthenticatedUserDto;
 import com.luckyloot.user.dto.response.ConfirmedUserDto;
 import com.luckyloot.user.dto.response.UserDto;
+import com.luckyloot.user.model.User;
 import com.luckyloot.user.service.AuthenticationService;
 import com.luckyloot.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,4 +42,28 @@ public class UserController {
         AuthenticatedUserDto authenticatedUserDto = authenticationService.Authenticate(request);
         return ResponseEntity.ok(ApiResponse.success(authenticatedUserDto));
     }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<ApiResponse<String>> login(@Valid @RequestBody ChangePasswordRequest request){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        userService.changePassword(user,request);
+        return ResponseEntity.ok(ApiResponse.success("Password changed"));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<ApiResponse<String>> forgotPassword(@Valid @RequestBody ResetPasswordRequest request){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        userService.resetPassword(user,request);
+        return ResponseEntity.ok(ApiResponse.success("Email with link to reset your password has been sent"));
+    }
+
+    @PostMapping("/new-password")
+    public ResponseEntity<ApiResponse<String>> newPassword(@Valid @RequestBody NewPasswordRequest request){
+        userService.setNewPassword(request);
+        return ResponseEntity.ok(ApiResponse.success("New password has been sent"));
+    }
+
+
 }
