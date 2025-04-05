@@ -8,28 +8,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SpinMapper {
-    public SpinResponse toSpinDto(Spin spin) {
+    public SpinResponse toSpinDto(Spin spin,String[][] result) {
         return new SpinResponse(
                 spin.getId(),
                 spin.getUser().getId(),
                 spin.getSlotGame().getId(),
-                spin.getResult(),
+                result,
                 spin.getWinAmount(),
                 spin.getBetAmount(),
                 spin.getStatus(),
                 spin.getSpinTime()
-        );
-    }
-
-    public Spin toSpin(SpinResponse spinResponse, User user, SlotGame slotGame) {
-        return new Spin(
-                user,
-                slotGame,
-                spinResponse.getResult(),
-                spinResponse.getWinAmount(),
-                spinResponse.getBetAmount(),
-                spinResponse.getStatus(),
-                spinResponse.getSpinTime()
         );
     }
 }

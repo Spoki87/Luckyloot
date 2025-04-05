@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -40,7 +38,8 @@ public class SpinService {
             throw new InvalidBetAmountException(request);
         }
 
-        List<String> result = generateSpinSymbols(slotGame);
+        String[][] result;
+        result = generateSpinSymbols(slotGame);
 
         boolean isWin = isWinningSpin(result);
         SpinStatus spinStatus = isWin ? SpinStatus.WIN : SpinStatus.LOSE;
@@ -48,7 +47,6 @@ public class SpinService {
         Spin spin = new Spin(
                 user,
                 slotGame,
-                result,
                 calculateWinAmount(result, request.getBetAmount()),
                 request.getBetAmount(),
                 spinStatus,
@@ -57,35 +55,45 @@ public class SpinService {
 
         spinRepository.save(spin);
 
-        return spinMapper.toSpinDto(spin);
+        return spinMapper.toSpinDto(spin,result);
     }
 
-    private List<String> generateSpinSymbols(SlotGame slotGame) {
-        List<String> result = new ArrayList<>();
+    private String[][] generateSpinSymbols(SlotGame slotGame) {
+        String[][] result = new String[slotGame.getReels()][slotGame.getRows()];
         Random random = new Random();
 
         for (int i = 0; i < slotGame.getReels(); i++) {
-            String randomSymbol = slotGame.getSymbols().get(random.nextInt(slotGame.getSymbols().size()));
-            result.add(randomSymbol);
+            for (int j = 0; j < slotGame.getRows(); j++) {
+                String randomSymbol = slotGame.getSymbols().get(random.nextInt(slotGame.getSymbols().size()));
+                result[i][j] = randomSymbol;
+            }
         }
 
         return result;
     }
 
-    private boolean isWinningSpin(List<String> spinResult) {
-        String firstSymbol = spinResult.get(0);
-        for (String symbol : spinResult) {
-            if (!symbol.equals(firstSymbol)) {
-                return false;
+    private boolean isWinningSpin(String[][] spinResult) {
+        for (String[] strings : spinResult) {
+            String firstSymbolInRow = strings[0];
+            boolean isRowWinning = true;
+            for (int col = 1; col < strings.length; col++) {
+                if (!strings[col].equals(firstSymbolInRow)) {
+                    isRowWinning = false;
+                    break;
+                }
+            }
+            if (isRowWinning) {
+                return true;
             }
         }
-        return true;
+
+        return false;
     }
 
-    private double calculateWinAmount(List<String> spinResult, double betAmount) {
-        if(isWinningSpin(spinResult)) {
-            return betAmount * spinResult.size();
-        }else{
+    private double calculateWinAmount(String[][] spinResult, double betAmount) {
+        if (isWinningSpin(spinResult)) {
+            return betAmount * spinResult.length;
+        } else {
             return 0;
         }
     }

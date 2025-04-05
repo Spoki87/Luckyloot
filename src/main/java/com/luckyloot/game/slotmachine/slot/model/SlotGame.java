@@ -34,7 +34,7 @@ public class SlotGame {
     public SlotGame(String name, String description, int rows, int reels, List<String> symbols, List<Double> betAmounts, String imagePath) {
         this.name = name;
         this.description = description;
-        this.rows = reels;
+        this.rows = rows;
         this.reels = reels;
         this.symbols = symbols;
         this.betAmounts = betAmounts;

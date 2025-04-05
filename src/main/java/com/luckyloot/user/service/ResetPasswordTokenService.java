@@ -41,7 +41,7 @@ public class ResetPasswordTokenService {
 
         String htmlContent = templateEngine.process("reset_password", context);
 
-        emailSender.send(user.getEmail(), htmlContent, "Confirmation of registration");
+        emailSender.send(user.getEmail(), htmlContent, "Password reset");
     }
 
     public User useToken(String token) {

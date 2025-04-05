@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -18,7 +17,7 @@ public class SpinResponse {
 
     private UUID slotGameId;
 
-    private List<String> result;
+    private String[][] result;
 
     private double winAmount;
 

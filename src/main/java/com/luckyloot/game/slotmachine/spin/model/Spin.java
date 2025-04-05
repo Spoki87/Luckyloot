@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -28,9 +27,6 @@ public class Spin {
     @JoinColumn(name = "slot_game_id", nullable = false)
     private SlotGame slotGame;
 
-    @ElementCollection
-    private List<String> result;
-
     private double winAmount;
 
     private double betAmount;
@@ -40,10 +36,9 @@ public class Spin {
 
     private LocalDateTime spinTime;
 
-    public Spin(User user, SlotGame slotGame, List<String> result, double winAmount, double betAmount, SpinStatus status, LocalDateTime spinTime) {
+    public Spin(User user, SlotGame slotGame, double winAmount, double betAmount, SpinStatus status, LocalDateTime spinTime) {
         this.user = user;
         this.slotGame = slotGame;
-        this.result = result;
         this.winAmount = winAmount;
         this.betAmount = betAmount;
         this.status = status;
