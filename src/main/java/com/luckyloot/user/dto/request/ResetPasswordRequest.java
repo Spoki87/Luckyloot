@@ -9,7 +9,7 @@ import lombok.Value;
  */
 @Value
 public class ResetPasswordRequest {
-    @NotBlank(message = "Email is required. Please provide a valid email address")
+    @NotBlank(message = "Email is required")
     @Email(message = "The email format is invalid. Please provide a valid email")
     String email;
 }

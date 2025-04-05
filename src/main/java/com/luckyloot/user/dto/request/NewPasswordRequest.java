@@ -1,5 +1,6 @@
 package com.luckyloot.user.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Value;
 
 /**
@@ -7,6 +8,9 @@ import lombok.Value;
  */
 @Value
 public class NewPasswordRequest {
+    @NotBlank(message = "Reset password token is required")
     String resetToken;
+
+    @NotBlank(message = "Password is required. Please provide a secure password")
     String newPassword;
 }

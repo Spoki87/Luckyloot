@@ -14,13 +14,13 @@ public class ApiResponse<T> {
     private final String message;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final T data;
-    private final int statusCode;  // Status HTTP
+    private final int status;
 
     public ApiResponse(String message, T data, HttpStatus httpStatus){
         this.timestamp = LocalDateTime.now();
         this.message = message;
         this.data = data;
-        this.statusCode = httpStatus.value();
+        this.status = httpStatus.value();
     }
 
     public static <T> ApiResponse<T> success(T data) {

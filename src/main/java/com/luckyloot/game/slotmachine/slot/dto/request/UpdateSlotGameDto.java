@@ -38,10 +38,6 @@ public class UpdateSlotGameDto implements Serializable {
     @Size(min = 1, message = "There should be at least one bet amount")
     List<Double> betAmounts;
 
-    @DecimalMin(value = "0.01", message = "Win chance must be greater than 0.01")
-    @DecimalMax(value = "1.0", message = "Win chance must be less than or equal to 1.0")
-    double winChance;
-
     @URL(message = "Invalid image URL")
     String imagePath;
 

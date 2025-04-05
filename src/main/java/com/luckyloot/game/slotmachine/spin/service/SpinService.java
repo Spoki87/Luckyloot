@@ -1,7 +1,7 @@
 package com.luckyloot.game.slotmachine.spin.service;
 
-import com.luckyloot.exception.InvalidBetAmountException;
-import com.luckyloot.exception.ResourceNotFoundException;
+import com.luckyloot.exception.domain.InvalidBetAmountException;
+import com.luckyloot.exception.domain.ResourceNotFoundException;
 import com.luckyloot.game.slotmachine.slot.mapper.SlotGameMapper;
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
 import com.luckyloot.game.slotmachine.slot.repository.SlotGameRepository;

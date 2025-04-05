@@ -1,25 +1,22 @@
 package com.luckyloot.user.service;
 
-import com.luckyloot.exception.NewPasswordException;
-import com.luckyloot.exception.ResourceAlreadyTakenException;
-import com.luckyloot.exception.UserNotFoundException;
+import com.luckyloot.exception.domain.NewPasswordException;
+import com.luckyloot.exception.domain.ResourceAlreadyTakenException;
+import com.luckyloot.exception.domain.UserNotFoundException;
 import com.luckyloot.user.dto.request.ChangePasswordRequest;
-import com.luckyloot.user.dto.request.CreateUserDto;
+import com.luckyloot.user.dto.request.CreateUserRequest;
 import com.luckyloot.user.dto.request.NewPasswordRequest;
 import com.luckyloot.user.dto.request.ResetPasswordRequest;
-import com.luckyloot.user.dto.response.ConfirmedUserDto;
-import com.luckyloot.user.dto.response.UserDto;
+import com.luckyloot.user.dto.response.UserResponse;
 import com.luckyloot.user.model.Role;
 import com.luckyloot.user.model.User;
 import com.luckyloot.user.repository.UserRepository;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +24,7 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final RegistrationUserTokenService registrationUserTokenService;
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -35,7 +32,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(UserNotFoundException::new);
     }
 
-    public UserDto register(CreateUserDto request){
+    public UserResponse register(CreateUserRequest request){
 
         User user = new User(request.getUsername(),request.getEmail(),bCryptPasswordEncoder.encode(request.getPassword()), Role.USER);
 
@@ -46,16 +43,14 @@ public class UserService implements UserDetailsService {
         }
 
         userRepository.save(user);
-        confirmationTokenService.createToken(user);
+        registrationUserTokenService.createToken(user);
 
-        return new UserDto(user.getId(),user.getUsername(),user.getEmail(),user.getRole());
+        return new UserResponse(user.getId(),user.getUsername(),user.getEmail(),user.getRole());
     }
 
-    public ConfirmedUserDto confirmRegistration(String token){
+    public void confirmRegistration(String token){
 
-        confirmationTokenService.confirmToken(token);
-
-        return new ConfirmedUserDto(LocalDateTime.now());
+        registrationUserTokenService.confirmToken(token);
     }
 
 
@@ -72,9 +67,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void resetPassword(User user, ResetPasswordRequest request) {
+    public void resetPassword(ResetPasswordRequest request) {
     }
 
-    public void setNewPassword(@Valid NewPasswordRequest request) {
+    public void setNewPassword(NewPasswordRequest request) {
     }
 }

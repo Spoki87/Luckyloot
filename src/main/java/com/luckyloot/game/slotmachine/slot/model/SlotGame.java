@@ -26,17 +26,14 @@ public class SlotGame {
     @ElementCollection
     private List<Double> betAmounts;
 
-    private double winChance;
-
     private String imagePath;
 
-    public SlotGame(String name, String description, int reels, List<String> symbols, List<Double> betAmounts, double winChance, String imagePath) {
+    public SlotGame(String name, String description, int reels, List<String> symbols, List<Double> betAmounts, String imagePath) {
         this.name = name;
         this.description = description;
         this.reels = reels;
         this.symbols = symbols;
         this.betAmounts = betAmounts;
-        this.winChance = winChance;
         this.imagePath = imagePath;
     }
 }

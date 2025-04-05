@@ -1,8 +1,8 @@
 package com.luckyloot.user.service;
 
-import com.luckyloot.exception.UserNotFoundException;
-import com.luckyloot.user.dto.request.AuthenticateUserDto;
-import com.luckyloot.user.dto.response.AuthenticatedUserDto;
+import com.luckyloot.exception.domain.UserNotFoundException;
+import com.luckyloot.user.dto.request.AuthenticateUserRequest;
+import com.luckyloot.user.dto.response.AuthenticatedUserResponse;
 import com.luckyloot.user.model.User;
 import com.luckyloot.user.repository.UserRepository;
 import com.luckyloot.user.security.config.JwtService;
@@ -19,7 +19,7 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
-    public AuthenticatedUserDto Authenticate(AuthenticateUserDto request){
+    public AuthenticatedUserResponse Authenticate(AuthenticateUserRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         User user = userRepository.findByEmail(request.getEmail())
@@ -27,6 +27,6 @@ public class AuthenticationService {
 
         String jwtToken = jwtService.generateToken(user);
 
-        return new AuthenticatedUserDto(user.getRole(),jwtToken);
+        return new AuthenticatedUserResponse(user.getRole(),jwtToken);
     }
 }

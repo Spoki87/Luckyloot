@@ -1,6 +1,6 @@
 package com.luckyloot.game.slotmachine.slot.service;
 
-import com.luckyloot.exception.ResourceNotFoundException;
+import com.luckyloot.exception.domain.ResourceNotFoundException;
 import com.luckyloot.game.slotmachine.slot.dto.request.CreateSlotGameDto;
 import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameDto;
 import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameDto;

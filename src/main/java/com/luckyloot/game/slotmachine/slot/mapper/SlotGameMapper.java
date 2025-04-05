@@ -16,7 +16,6 @@ public class SlotGameMapper {
                 dto.getReels(),
                 dto.getSymbols(),
                 dto.getBetAmounts(),
-                dto.getWinChance(),
                 dto.getImagePath()
         );
     }
@@ -29,7 +28,6 @@ public class SlotGameMapper {
                 slotGame.getReels(),
                 slotGame.getSymbols(),
                 slotGame.getBetAmounts(),
-                slotGame.getWinChance(),
                 slotGame.getImagePath()
         );
     }
@@ -40,7 +38,6 @@ public class SlotGameMapper {
         slotGame.setReels(request.getReels());
         slotGame.setSymbols(request.getSymbols());
         slotGame.setBetAmounts(request.getBetAmounts());
-        slotGame.setWinChance(request.getWinChance());
         slotGame.setImagePath(request.getImagePath());
     }
 }

@@ -18,6 +18,5 @@ public class SlotGameDto implements Serializable {
     int reels;
     List<String> symbols;
     List<Double> betAmounts;
-    double winChance;
     String imagePath;
 }
