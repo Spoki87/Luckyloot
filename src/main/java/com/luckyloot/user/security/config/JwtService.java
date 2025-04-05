@@ -1,6 +1,6 @@
 package com.luckyloot.user.security.config;
 
-import com.luckyloot.user.model.User;
+import com.luckyloot.user.appuser.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

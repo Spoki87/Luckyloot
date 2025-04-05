@@ -1,6 +1,8 @@
 package com.luckyloot.exception.domain;
 
-public class ResourceAlreadyTakenException extends RuntimeException {
+import com.luckyloot.exception.base.BusinessException;
+
+public class ResourceAlreadyTakenException extends BusinessException {
     public ResourceAlreadyTakenException(String message){
         super(message);
     }

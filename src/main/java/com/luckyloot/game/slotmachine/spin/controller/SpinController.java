@@ -4,7 +4,7 @@ import com.luckyloot.game.slotmachine.spin.dto.request.CreateSpinRequest;
 import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.service.SpinService;
 import com.luckyloot.response.ApiResponse;
-import com.luckyloot.user.model.User;
+import com.luckyloot.user.appuser.model.User;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

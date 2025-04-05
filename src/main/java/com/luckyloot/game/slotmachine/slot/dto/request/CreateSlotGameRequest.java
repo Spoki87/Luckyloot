@@ -31,7 +31,7 @@ public class CreateSlotGameRequest implements Serializable {
     int reels;
 
     @NotEmpty(message = "symbols is required")
-    @Size(min = 2, max = 10)
+    @Size(min = 6, max = 10)
     List<String> symbols;
 
     @NotEmpty(message = "Bet amounts are required")

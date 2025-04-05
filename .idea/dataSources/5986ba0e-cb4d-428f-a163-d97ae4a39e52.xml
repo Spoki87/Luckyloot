@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>873</IntrospectionStateNumber>
+      <IntrospectionStateNumber>999</IntrospectionStateNumber>
       <ServerVersion>17.4</ServerVersion>
       <StartupTime>1743016610</StartupTime>
       <TimeZones>true ACDT
@@ -380,9 +380,9 @@ false Atlantic/South_Georgia
 false Atlantic/St_Helena
 false Atlantic/Stanley
 false Australia/ACT
-true Australia/Adelaide
+false Australia/Adelaide
 false Australia/Brisbane
-true Australia/Broken_Hill
+false Australia/Broken_Hill
 false Australia/Canberra
 false Australia/Currie
 false Australia/Darwin
@@ -396,12 +396,12 @@ false Australia/NSW
 false Australia/North
 false Australia/Perth
 false Australia/Queensland
-true Australia/South
+false Australia/South
 false Australia/Sydney
 false Australia/Tasmania
 false Australia/Victoria
 false Australia/West
-true Australia/Yancowinna
+false Australia/Yancowinna
 true BDST
 false BDT
 false BNT
@@ -1135,9 +1135,9 @@ false posix/Atlantic/South_Georgia
 false posix/Atlantic/St_Helena
 false posix/Atlantic/Stanley
 false posix/Australia/ACT
-true posix/Australia/Adelaide
+false posix/Australia/Adelaide
 false posix/Australia/Brisbane
-true posix/Australia/Broken_Hill
+false posix/Australia/Broken_Hill
 false posix/Australia/Canberra
 false posix/Australia/Currie
 false posix/Australia/Darwin
@@ -1151,12 +1151,12 @@ false posix/Australia/NSW
 false posix/Australia/North
 false posix/Australia/Perth
 false posix/Australia/Queensland
-true posix/Australia/South
+false posix/Australia/South
 false posix/Australia/Sydney
 false posix/Australia/Tasmania
 false posix/Australia/Victoria
 false posix/Australia/West
-true posix/Australia/Yancowinna
+false posix/Australia/Yancowinna
 false posix/Brazil/Acre
 false posix/Brazil/DeNoronha
 false posix/Brazil/East
@@ -1399,7 +1399,7 @@ true posixrules
 13219||10|C|G
 13219||-9223372036854775808|U|G
 13219||10|U|G</Grants>
-      <IntrospectionStateNumber>873</IntrospectionStateNumber>
+      <IntrospectionStateNumber>999</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>root</OwnerName>
     </database>
@@ -4826,8 +4826,8 @@ true posixrules
     <schema id="265" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>873</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-04-05.16:26:20</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>999</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-04-05.21:13:17</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4880,56 +4880,62 @@ true posixrules
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>root</OwnerName>
     </table>
-    <check id="274" parent="266" name="app_user_role_check">
+    <table id="274" parent="265" name="wallet">
+      <ObjectId>16541</ObjectId>
+      <StateNumber>998</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>root</OwnerName>
+    </table>
+    <check id="275" parent="266" name="app_user_role_check">
       <ColNames>role</ColNames>
       <ObjectId>16388</ObjectId>
       <Predicate>(role)::text = &apos;USER&apos;::text</Predicate>
       <StateNumber>740</StateNumber>
     </check>
-    <column id="275" parent="266" name="id">
+    <column id="276" parent="266" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>740</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="276" parent="266" name="email">
+    <column id="277" parent="266" name="email">
       <Position>2</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="277" parent="266" name="enabled">
+    <column id="278" parent="266" name="enabled">
       <Position>3</Position>
       <StateNumber>740</StateNumber>
       <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
-    <column id="278" parent="266" name="locked">
+    <column id="279" parent="266" name="locked">
       <Position>4</Position>
       <StateNumber>740</StateNumber>
       <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
-    <column id="279" parent="266" name="password">
+    <column id="280" parent="266" name="password">
       <Position>5</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="280" parent="266" name="role">
+    <column id="281" parent="266" name="role">
       <Position>6</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="281" parent="266" name="username">
+    <column id="282" parent="266" name="username">
       <Position>7</Position>
       <StateNumber>740</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="282" parent="266" name="app_user_pkey">
+    <index id="283" parent="266" name="app_user_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16391</ObjectId>
@@ -4938,59 +4944,59 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="283" parent="266" name="app_user_pkey">
+    <key id="284" parent="266" name="app_user_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16392</ObjectId>
       <Primary>1</Primary>
       <StateNumber>740</StateNumber>
       <UnderlyingIndexId>16391</UnderlyingIndexId>
     </key>
-    <column id="284" parent="267" name="id">
+    <column id="285" parent="267" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>859</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="285" parent="267" name="confirmed_time">
+    <column id="286" parent="267" name="confirmed_time">
       <Position>2</Position>
       <StateNumber>859</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="286" parent="267" name="created_time">
+    <column id="287" parent="267" name="created_time">
       <Position>3</Position>
       <StateNumber>859</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="287" parent="267" name="expired_time">
+    <column id="288" parent="267" name="expired_time">
       <Position>4</Position>
       <StateNumber>859</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="288" parent="267" name="token">
+    <column id="289" parent="267" name="token">
       <Position>5</Position>
       <StateNumber>859</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="289" parent="267" name="app_user_id">
+    <column id="290" parent="267" name="app_user_id">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>859</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="290" parent="267" name="fk5wbqblwswksy4j3s8bckt9pq4">
+    <foreign-key id="291" parent="267" name="fk5wbqblwswksy4j3s8bckt9pq4">
       <ColNames>app_user_id</ColNames>
       <ObjectId>16506</ObjectId>
       <StateNumber>866</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16385</RefTableId>
     </foreign-key>
-    <index id="291" parent="267" name="registration_user_token_pkey">
+    <index id="292" parent="267" name="registration_user_token_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16477</ObjectId>
@@ -4999,59 +5005,59 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="292" parent="267" name="registration_user_token_pkey">
+    <key id="293" parent="267" name="registration_user_token_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16478</ObjectId>
       <Primary>1</Primary>
       <StateNumber>859</StateNumber>
       <UnderlyingIndexId>16477</UnderlyingIndexId>
     </key>
-    <column id="293" parent="268" name="id">
+    <column id="294" parent="268" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>860</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="294" parent="268" name="created_time">
+    <column id="295" parent="268" name="created_time">
       <Position>2</Position>
       <StateNumber>860</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="295" parent="268" name="expired_time">
+    <column id="296" parent="268" name="expired_time">
       <Position>3</Position>
       <StateNumber>860</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="296" parent="268" name="token">
+    <column id="297" parent="268" name="token">
       <Position>4</Position>
       <StateNumber>860</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="297" parent="268" name="used_time">
+    <column id="298" parent="268" name="used_time">
       <Position>5</Position>
       <StateNumber>860</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="298" parent="268" name="app_user_id">
+    <column id="299" parent="268" name="app_user_id">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>860</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="299" parent="268" name="fkiyh9fehwvxqo6gp46l5be3kub">
+    <foreign-key id="300" parent="268" name="fkiyh9fehwvxqo6gp46l5be3kub">
       <ColNames>app_user_id</ColNames>
       <ObjectId>16511</ObjectId>
       <StateNumber>867</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16385</RefTableId>
     </foreign-key>
-    <index id="300" parent="268" name="reset_password_token_pkey">
+    <index id="301" parent="268" name="reset_password_token_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16482</ObjectId>
@@ -5060,53 +5066,53 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="301" parent="268" name="reset_password_token_pkey">
+    <key id="302" parent="268" name="reset_password_token_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16483</ObjectId>
       <Primary>1</Primary>
       <StateNumber>860</StateNumber>
       <UnderlyingIndexId>16482</UnderlyingIndexId>
     </key>
-    <column id="302" parent="269" name="id">
+    <column id="303" parent="269" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>861</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="303" parent="269" name="description">
+    <column id="304" parent="269" name="description">
       <Position>2</Position>
       <StateNumber>861</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="304" parent="269" name="image_path">
+    <column id="305" parent="269" name="image_path">
       <Position>3</Position>
       <StateNumber>861</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="305" parent="269" name="name">
+    <column id="306" parent="269" name="name">
       <Position>4</Position>
       <StateNumber>861</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="306" parent="269" name="reels">
+    <column id="307" parent="269" name="reels">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>861</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="307" parent="269" name="rows">
+    <column id="308" parent="269" name="rows">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>861</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <index id="308" parent="269" name="slot_game_pkey">
+    <index id="309" parent="269" name="slot_game_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16489</ObjectId>
@@ -5115,121 +5121,121 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="309" parent="269" name="slot_game_pkey">
+    <key id="310" parent="269" name="slot_game_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16490</ObjectId>
       <Primary>1</Primary>
       <StateNumber>861</StateNumber>
       <UnderlyingIndexId>16489</UnderlyingIndexId>
     </key>
-    <column id="310" parent="270" name="slot_game_id">
+    <column id="311" parent="270" name="slot_game_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>862</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="311" parent="270" name="bet_amounts">
+    <column id="312" parent="270" name="bet_amounts">
       <Position>2</Position>
       <StateNumber>862</StateNumber>
       <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
-    <foreign-key id="312" parent="270" name="fkhl4ui4ya3j40cey9rsasv3n2l">
+    <foreign-key id="313" parent="270" name="fkhl4ui4ya3j40cey9rsasv3n2l">
       <ColNames>slot_game_id</ColNames>
       <ObjectId>16516</ObjectId>
       <StateNumber>868</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16484</RefTableId>
     </foreign-key>
-    <column id="313" parent="271" name="slot_game_id">
+    <column id="314" parent="271" name="slot_game_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>863</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="314" parent="271" name="symbols">
+    <column id="315" parent="271" name="symbols">
       <Position>2</Position>
       <StateNumber>863</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="315" parent="271" name="fkifw1f9dnd8ppqghrcybpfcr39">
+    <foreign-key id="316" parent="271" name="fkifw1f9dnd8ppqghrcybpfcr39">
       <ColNames>slot_game_id</ColNames>
       <ObjectId>16521</ObjectId>
       <StateNumber>869</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16484</RefTableId>
     </foreign-key>
-    <check id="316" parent="272" name="spin_status_check">
+    <check id="317" parent="272" name="spin_status_check">
       <ColNames>status</ColNames>
       <ObjectId>16500</ObjectId>
       <Predicate>(status)::text = ANY ((ARRAY[&apos;WIN&apos;::character varying, &apos;LOSE&apos;::character varying])::text[])</Predicate>
       <StateNumber>864</StateNumber>
     </check>
-    <column id="317" parent="272" name="id">
+    <column id="318" parent="272" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>864</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="318" parent="272" name="bet_amount">
+    <column id="319" parent="272" name="bet_amount">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>864</StateNumber>
       <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
-    <column id="319" parent="272" name="spin_time">
+    <column id="320" parent="272" name="spin_time">
       <Position>3</Position>
       <StateNumber>864</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="320" parent="272" name="status">
+    <column id="321" parent="272" name="status">
       <Position>4</Position>
       <StateNumber>864</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="321" parent="272" name="win_amount">
+    <column id="322" parent="272" name="win_amount">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>864</StateNumber>
       <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
-    <column id="322" parent="272" name="slot_game_id">
+    <column id="323" parent="272" name="slot_game_id">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>864</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="323" parent="272" name="user_id">
+    <column id="324" parent="272" name="user_id">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>864</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="324" parent="272" name="fkeoci8pws07te2655o4mpohpg5">
+    <foreign-key id="325" parent="272" name="fkeoci8pws07te2655o4mpohpg5">
       <ColNames>slot_game_id</ColNames>
       <ObjectId>16526</ObjectId>
       <StateNumber>870</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16484</RefTableId>
     </foreign-key>
-    <foreign-key id="325" parent="272" name="fknas71u8ultq40ie43bdwdom6u">
+    <foreign-key id="326" parent="272" name="fknas71u8ultq40ie43bdwdom6u">
       <ColNames>user_id</ColNames>
       <ObjectId>16531</ObjectId>
       <StateNumber>871</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16385</RefTableId>
     </foreign-key>
-    <index id="326" parent="272" name="spin_pkey">
+    <index id="327" parent="272" name="spin_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16501</ObjectId>
@@ -5238,32 +5244,86 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="327" parent="272" name="spin_pkey">
+    <key id="328" parent="272" name="spin_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16502</ObjectId>
       <Primary>1</Primary>
       <StateNumber>864</StateNumber>
       <UnderlyingIndexId>16501</UnderlyingIndexId>
     </key>
-    <column id="328" parent="273" name="spin_id">
+    <column id="329" parent="273" name="spin_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>865</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="329" parent="273" name="result">
+    <column id="330" parent="273" name="result">
       <Position>2</Position>
       <StateNumber>865</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="330" parent="273" name="fksqaixbn8metjdpox29d34g4as">
+    <foreign-key id="331" parent="273" name="fksqaixbn8metjdpox29d34g4as">
       <ColNames>spin_id</ColNames>
       <ObjectId>16536</ObjectId>
       <StateNumber>872</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16497</RefTableId>
     </foreign-key>
+    <column id="332" parent="274" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>995</StateNumber>
+      <StoredType>uuid|0s</StoredType>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="333" parent="274" name="balance">
+      <Position>2</Position>
+      <StateNumber>995</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="334" parent="274" name="user_id">
+      <Position>3</Position>
+      <StateNumber>995</StateNumber>
+      <StoredType>uuid|0s</StoredType>
+      <TypeId>2950</TypeId>
+    </column>
+    <foreign-key id="335" parent="274" name="fk8xcge928o78vtbh64bddusygy">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16548</ObjectId>
+      <StateNumber>998</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16385</RefTableId>
+    </foreign-key>
+    <index id="336" parent="274" name="wallet_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16544</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>995</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="337" parent="274" name="ukhgee4p1hiwadqinr0avxlq4eb">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16546</ObjectId>
+      <StateNumber>997</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="338" parent="274" name="wallet_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16545</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>995</StateNumber>
+      <UnderlyingIndexId>16544</UnderlyingIndexId>
+    </key>
+    <key id="339" parent="274" name="ukhgee4p1hiwadqinr0avxlq4eb">
+      <ObjectId>16547</ObjectId>
+      <StateNumber>997</StateNumber>
+      <UnderlyingIndexId>16546</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>

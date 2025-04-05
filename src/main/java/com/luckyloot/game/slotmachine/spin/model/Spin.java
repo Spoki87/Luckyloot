@@ -1,7 +1,7 @@
 package com.luckyloot.game.slotmachine.spin.model;
 
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
-import com.luckyloot.user.model.User;
+import com.luckyloot.user.appuser.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

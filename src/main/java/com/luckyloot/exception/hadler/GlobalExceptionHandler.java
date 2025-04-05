@@ -54,6 +54,7 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<String>> handleOtherExceptions(Exception ex) {
+        System.out.println(ex.getMessage());
         return buildError("Unexpected server error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

@@ -1,9 +1,7 @@
 package com.luckyloot.game.slotmachine.spin.mapper;
 
-import com.luckyloot.game.slotmachine.slot.model.SlotGame;
 import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.model.Spin;
-import com.luckyloot.user.model.User;
 import org.springframework.stereotype.Component;
 
 @Component

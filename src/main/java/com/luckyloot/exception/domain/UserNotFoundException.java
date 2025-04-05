@@ -1,6 +1,8 @@
 package com.luckyloot.exception.domain;
 
-public class UserNotFoundException extends RuntimeException {
+import com.luckyloot.exception.base.BusinessException;
+
+public class UserNotFoundException extends BusinessException {
     public UserNotFoundException() {
         super("Email is incorrect.");
     }

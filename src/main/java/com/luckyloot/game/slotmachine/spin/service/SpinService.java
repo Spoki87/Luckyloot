@@ -2,7 +2,6 @@ package com.luckyloot.game.slotmachine.spin.service;
 
 import com.luckyloot.exception.domain.InvalidBetAmountException;
 import com.luckyloot.exception.domain.ResourceNotFoundException;
-import com.luckyloot.game.slotmachine.slot.mapper.SlotGameMapper;
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
 import com.luckyloot.game.slotmachine.slot.repository.SlotGameRepository;
 import com.luckyloot.game.slotmachine.spin.dto.request.CreateSpinRequest;
@@ -11,11 +10,13 @@ import com.luckyloot.game.slotmachine.spin.mapper.SpinMapper;
 import com.luckyloot.game.slotmachine.spin.model.Spin;
 import com.luckyloot.game.slotmachine.spin.model.SpinStatus;
 import com.luckyloot.game.slotmachine.spin.repository.SpinRepository;
-import com.luckyloot.user.model.User;
+import com.luckyloot.user.appuser.model.User;
+import com.luckyloot.user.wallet.service.WalletService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
@@ -27,7 +28,7 @@ public class SpinService {
     private final SpinRepository spinRepository;
     private final SlotGameRepository slotGameRepository;
     private final SpinMapper spinMapper;
-    private final SlotGameMapper slotGameMapper;
+    private final WalletService walletService;
 
     public SpinResponse spin(UUID slotGameId, @Valid CreateSpinRequest request, User user) {
 
@@ -37,6 +38,8 @@ public class SpinService {
         if (!slotGame.getBetAmounts().contains(request.getBetAmount())) {
             throw new InvalidBetAmountException(request);
         }
+
+        walletService.bet(user, BigDecimal.valueOf(request.getBetAmount()));
 
         String[][] result;
         result = generateSpinSymbols(slotGame);
@@ -52,6 +55,10 @@ public class SpinService {
                 spinStatus,
                 LocalDateTime.now()
         );
+
+        if(isWin){
+            walletService.addWin(user, BigDecimal.valueOf(spin.getWinAmount()));
+        }
 
         spinRepository.save(spin);
 

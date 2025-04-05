@@ -1,7 +1,7 @@
 package com.luckyloot.user.security.config;
 
-import com.luckyloot.user.model.User;
-import com.luckyloot.user.service.UserService;
+import com.luckyloot.user.appuser.model.User;
+import com.luckyloot.user.appuser.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
