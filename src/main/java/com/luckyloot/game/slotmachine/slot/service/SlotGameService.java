@@ -1,9 +1,9 @@
 package com.luckyloot.game.slotmachine.slot.service;
 
 import com.luckyloot.exception.domain.ResourceNotFoundException;
-import com.luckyloot.game.slotmachine.slot.dto.request.CreateSlotGameDto;
-import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameDto;
-import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameDto;
+import com.luckyloot.game.slotmachine.slot.dto.request.CreateSlotGameRequest;
+import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameRequest;
+import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameResponse;
 
 import com.luckyloot.game.slotmachine.slot.mapper.SlotGameMapper;
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
@@ -21,24 +21,24 @@ public class SlotGameService {
     private final SlotGameRepository slotGameRepository;
     private final SlotGameMapper slotGameMapper;
 
-    public SlotGameDto create(CreateSlotGameDto request) {
+    public SlotGameResponse create(CreateSlotGameRequest request) {
         SlotGame slotGame = slotGameMapper.fromCreateDto(request);
         slotGameRepository.save(slotGame);
         return slotGameMapper.fromSlotGame(slotGame);
     }
 
-    public SlotGameDto getSlot(UUID id) {
+    public SlotGameResponse getSlot(UUID id) {
         SlotGame slotGame = slotGameRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException(SlotGame.class,id));
         return slotGameMapper.fromSlotGame(slotGame);
     }
 
-    public List<SlotGameDto> getAll() {
+    public List<SlotGameResponse> getAll() {
         List<SlotGame> slotGames = slotGameRepository.findAll();
         return slotGames.stream().map(slotGameMapper::fromSlotGame).toList();
     }
 
-    public SlotGameDto update(UUID id, UpdateSlotGameDto request) {
+    public SlotGameResponse update(UUID id, UpdateSlotGameRequest request) {
         SlotGame slotGame = slotGameRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException(SlotGame.class,id));
 
@@ -49,7 +49,7 @@ public class SlotGameService {
         return slotGameMapper.fromSlotGame(updatedSlotGame);
     }
 
-    public SlotGameDto delete(UUID id) {
+    public SlotGameResponse delete(UUID id) {
         SlotGame slotGame = slotGameRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException(SlotGame.class,id));
         slotGameRepository.delete(slotGame);

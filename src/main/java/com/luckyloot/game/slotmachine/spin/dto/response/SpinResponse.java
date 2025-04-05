@@ -1,4 +1,4 @@
-package com.luckyloot.game.slotmachine.spin.dto;
+package com.luckyloot.game.slotmachine.spin.dto.response;
 
 import com.luckyloot.game.slotmachine.spin.model.SpinStatus;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
-public class SpinDto {
+public class SpinResponse {
 
     private UUID id;
 

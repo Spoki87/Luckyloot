@@ -1,7 +1,7 @@
 package com.luckyloot.game.slotmachine.spin.controller;
 
-import com.luckyloot.game.slotmachine.spin.dto.CreateSpinDto;
-import com.luckyloot.game.slotmachine.spin.dto.SpinDto;
+import com.luckyloot.game.slotmachine.spin.dto.request.CreateSpinRequest;
+import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.service.SpinService;
 import com.luckyloot.response.ApiResponse;
 import com.luckyloot.user.model.User;
@@ -22,12 +22,12 @@ public class SpinController {
     private final SpinService spinService;
 
     @PostMapping("/{slotGameId}")
-    public ResponseEntity<ApiResponse<SpinDto>> spin(@Valid @RequestBody CreateSpinDto request, @PathVariable("slotGameId") UUID slotGameId) {
+    public ResponseEntity<ApiResponse<SpinResponse>> spin(@Valid @RequestBody CreateSpinRequest request, @PathVariable("slotGameId") UUID slotGameId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
-        SpinDto spinDto = spinService.spin(slotGameId,request,user);
+        SpinResponse spinResponse = spinService.spin(slotGameId,request,user);
 
-        return ResponseEntity.ok(ApiResponse.success(spinDto));
+        return ResponseEntity.ok(ApiResponse.success(spinResponse));
     }
 
 }

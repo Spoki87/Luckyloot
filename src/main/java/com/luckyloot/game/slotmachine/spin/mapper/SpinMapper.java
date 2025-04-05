@@ -1,15 +1,15 @@
 package com.luckyloot.game.slotmachine.spin.mapper;
 
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
-import com.luckyloot.game.slotmachine.spin.dto.SpinDto;
+import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.model.Spin;
 import com.luckyloot.user.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SpinMapper {
-    public SpinDto toSpinDto(Spin spin) {
-        return new SpinDto(
+    public SpinResponse toSpinDto(Spin spin) {
+        return new SpinResponse(
                 spin.getId(),
                 spin.getUser().getId(),
                 spin.getSlotGame().getId(),
@@ -21,15 +21,15 @@ public class SpinMapper {
         );
     }
 
-    public Spin toSpin(SpinDto spinDto, User user, SlotGame slotGame) {
+    public Spin toSpin(SpinResponse spinResponse, User user, SlotGame slotGame) {
         return new Spin(
                 user,
                 slotGame,
-                spinDto.getResult(),
-                spinDto.getWinAmount(),
-                spinDto.getBetAmount(),
-                spinDto.getStatus(),
-                spinDto.getSpinTime()
+                spinResponse.getResult(),
+                spinResponse.getWinAmount(),
+                spinResponse.getBetAmount(),
+                spinResponse.getStatus(),
+                spinResponse.getSpinTime()
         );
     }
 }

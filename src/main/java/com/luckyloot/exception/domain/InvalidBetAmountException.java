@@ -1,9 +1,9 @@
 package com.luckyloot.exception.domain;
 
-import com.luckyloot.game.slotmachine.spin.dto.CreateSpinDto;
+import com.luckyloot.game.slotmachine.spin.dto.request.CreateSpinRequest;
 
 public class InvalidBetAmountException extends RuntimeException {
-    public InvalidBetAmountException(CreateSpinDto spinDto) {
+    public InvalidBetAmountException(CreateSpinRequest spinDto) {
         super("Invalid slot bet amount " + spinDto.getBetAmount());
     }
 }

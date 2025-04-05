@@ -44,7 +44,7 @@ public class ResetPasswordTokenService {
         emailSender.send(user.getEmail(), htmlContent, "Confirmation of registration");
     }
 
-    public void useToken(String token) {
+    public User useToken(String token) {
         ResetPasswordToken resetPasswordToken = resetPasswordTokenRepository.findByToken(token)
                 .orElseThrow(() -> new ResourceNotFoundException(ResetPasswordToken.class, token));
 
@@ -60,6 +60,8 @@ public class ResetPasswordTokenService {
 
         resetPasswordToken.setUsedTime(LocalDateTime.now());
         resetPasswordTokenRepository.save(resetPasswordToken);
+
+        return resetPasswordToken.getUser();
     }
 
 }

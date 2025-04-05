@@ -16,7 +16,10 @@ public class SlotGame {
     private UUID id;
 
     private String name;
+
     private String description;
+
+    private int rows;
 
     private int reels;
 
@@ -28,9 +31,10 @@ public class SlotGame {
 
     private String imagePath;
 
-    public SlotGame(String name, String description, int reels, List<String> symbols, List<Double> betAmounts, String imagePath) {
+    public SlotGame(String name, String description, int rows, int reels, List<String> symbols, List<Double> betAmounts, String imagePath) {
         this.name = name;
         this.description = description;
+        this.rows = reels;
         this.reels = reels;
         this.symbols = symbols;
         this.betAmounts = betAmounts;

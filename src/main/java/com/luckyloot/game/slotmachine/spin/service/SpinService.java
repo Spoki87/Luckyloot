@@ -5,8 +5,8 @@ import com.luckyloot.exception.domain.ResourceNotFoundException;
 import com.luckyloot.game.slotmachine.slot.mapper.SlotGameMapper;
 import com.luckyloot.game.slotmachine.slot.model.SlotGame;
 import com.luckyloot.game.slotmachine.slot.repository.SlotGameRepository;
-import com.luckyloot.game.slotmachine.spin.dto.CreateSpinDto;
-import com.luckyloot.game.slotmachine.spin.dto.SpinDto;
+import com.luckyloot.game.slotmachine.spin.dto.request.CreateSpinRequest;
+import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.mapper.SpinMapper;
 import com.luckyloot.game.slotmachine.spin.model.Spin;
 import com.luckyloot.game.slotmachine.spin.model.SpinStatus;
@@ -31,7 +31,7 @@ public class SpinService {
     private final SpinMapper spinMapper;
     private final SlotGameMapper slotGameMapper;
 
-    public SpinDto spin(UUID slotGameId, @Valid CreateSpinDto request, User user) {
+    public SpinResponse spin(UUID slotGameId, @Valid CreateSpinRequest request, User user) {
 
         SlotGame slotGame = slotGameRepository.findById(slotGameId)
                 .orElseThrow(()->new ResourceNotFoundException(SlotGame.class,slotGameId));

@@ -11,10 +11,11 @@ import java.util.UUID;
  * DTO for {@link SlotGame}
  */
 @Value
-public class SlotGameDto implements Serializable {
+public class SlotGameResponse implements Serializable {
     UUID id;
     String name;
     String description;
+    int rows;
     int reels;
     List<String> symbols;
     List<Double> betAmounts;

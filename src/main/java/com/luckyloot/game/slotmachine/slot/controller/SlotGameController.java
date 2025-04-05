@@ -1,8 +1,8 @@
 package com.luckyloot.game.slotmachine.slot.controller;
 
-import com.luckyloot.game.slotmachine.slot.dto.request.CreateSlotGameDto;
-import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameDto;
-import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameDto;
+import com.luckyloot.game.slotmachine.slot.dto.request.CreateSlotGameRequest;
+import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameRequest;
+import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameResponse;
 import com.luckyloot.game.slotmachine.slot.service.SlotGameService;
 import com.luckyloot.response.ApiResponse;
 import jakarta.validation.Valid;
@@ -22,33 +22,33 @@ public class SlotGameController {
     private final SlotGameService slotGameService;
 
     @PostMapping()
-    public ResponseEntity<ApiResponse<SlotGameDto>> createSlot(@Valid @RequestBody CreateSlotGameDto request){
-        SlotGameDto slotGameDto = slotGameService.create(request);
-        return ResponseEntity.ok(ApiResponse.success(slotGameDto));
+    public ResponseEntity<ApiResponse<SlotGameResponse>> createSlot(@Valid @RequestBody CreateSlotGameRequest request){
+        SlotGameResponse slotGameResponse = slotGameService.create(request);
+        return ResponseEntity.ok(ApiResponse.success(slotGameResponse));
     }
 
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<SlotGameDto>>> getAllSlots(){
-        List<SlotGameDto> slotGameDto = slotGameService.getAll();
-        return ResponseEntity.ok(ApiResponse.success(slotGameDto));
+    public ResponseEntity<ApiResponse<List<SlotGameResponse>>> getAllSlots(){
+        List<SlotGameResponse> slotGameResponse = slotGameService.getAll();
+        return ResponseEntity.ok(ApiResponse.success(slotGameResponse));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<SlotGameDto>> getSlot(@PathVariable UUID id){
-        SlotGameDto slotGameDto = slotGameService.getSlot(id);
-        return ResponseEntity.ok(ApiResponse.success(slotGameDto));
+    public ResponseEntity<ApiResponse<SlotGameResponse>> getSlot(@PathVariable UUID id){
+        SlotGameResponse slotGameResponse = slotGameService.getSlot(id);
+        return ResponseEntity.ok(ApiResponse.success(slotGameResponse));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<SlotGameDto>> updateSlot(@Valid @RequestBody UpdateSlotGameDto request, @PathVariable UUID id){
-        SlotGameDto slotGameDto = slotGameService.update(id, request);
-        return ResponseEntity.ok(ApiResponse.success(slotGameDto));
+    public ResponseEntity<ApiResponse<SlotGameResponse>> updateSlot(@Valid @RequestBody UpdateSlotGameRequest request, @PathVariable UUID id){
+        SlotGameResponse slotGameResponse = slotGameService.update(id, request);
+        return ResponseEntity.ok(ApiResponse.success(slotGameResponse));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<SlotGameDto>> deleteSlot(@PathVariable UUID id){
-        SlotGameDto slotGameDto = slotGameService.delete(id);
-        return ResponseEntity.ok(ApiResponse.success(slotGameDto));
+    public ResponseEntity<ApiResponse<SlotGameResponse>> deleteSlot(@PathVariable UUID id){
+        SlotGameResponse slotGameResponse = slotGameService.delete(id);
+        return ResponseEntity.ok(ApiResponse.success(slotGameResponse));
     }
 
 }

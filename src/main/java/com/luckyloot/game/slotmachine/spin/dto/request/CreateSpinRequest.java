@@ -1,10 +1,10 @@
-package com.luckyloot.game.slotmachine.spin.dto;
+package com.luckyloot.game.slotmachine.spin.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CreateSpinDto {
+public class CreateSpinRequest {
     private double betAmount;
 }

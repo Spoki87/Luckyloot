@@ -13,7 +13,7 @@ import java.util.List;
  * DTO for updating {@link SlotGame}
  */
 @Value
-public class UpdateSlotGameDto implements Serializable {
+public class UpdateSlotGameRequest implements Serializable {
 
     @Size(min = 5, max = 255, message = "Name must be between 5 and 255 characters")
     @NotBlank(message = "name is required")
@@ -23,7 +23,7 @@ public class UpdateSlotGameDto implements Serializable {
     String description;
 
     @NotNull(message = "Reels are required")
-    @Range(message = "Reels range is between 3 and 5", min = 3, max = 5)
+    @Range(message = "Reels range is between 3 and 6", min = 3, max = 5)
     int reels;
 
     @NotNull(message = "Rows are required")

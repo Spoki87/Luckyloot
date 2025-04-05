@@ -25,6 +25,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final RegistrationUserTokenService registrationUserTokenService;
+    private final ResetPasswordTokenService resetPasswordTokenService;
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -68,8 +69,14 @@ public class UserService implements UserDetailsService {
     }
 
     public void resetPassword(ResetPasswordRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(UserNotFoundException::new);
+        resetPasswordTokenService.createToken(user);
     }
 
     public void setNewPassword(NewPasswordRequest request) {
+       User user = resetPasswordTokenService.useToken(request.getResetToken());
+       user.setPassword(bCryptPasswordEncoder.encode(request.getNewPassword()));
+       userRepository.save(user);
     }
 }
