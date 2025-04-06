@@ -5,6 +5,7 @@ import com.luckyloot.game.slotmachine.spin.dto.response.SpinResponse;
 import com.luckyloot.game.slotmachine.spin.service.SpinService;
 import com.luckyloot.response.ApiResponse;
 import com.luckyloot.user.appuser.model.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Tag(name = "Spins")
 @RestController
 @RequestMapping("/api/spins")
 @Valid

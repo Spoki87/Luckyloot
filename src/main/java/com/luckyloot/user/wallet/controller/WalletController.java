@@ -5,6 +5,7 @@ import com.luckyloot.user.appuser.model.User;
 import com.luckyloot.user.wallet.dto.DepositRequest;
 import com.luckyloot.user.wallet.dto.WithdrawalRequest;
 import com.luckyloot.user.wallet.service.WalletService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name="Wallet")
 @Validated
 @RestController
 @AllArgsConstructor

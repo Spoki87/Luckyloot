@@ -7,6 +7,7 @@ import com.luckyloot.user.appuser.dto.response.UserResponse;
 import com.luckyloot.user.appuser.model.User;
 import com.luckyloot.user.security.service.AuthenticationService;
 import com.luckyloot.user.appuser.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "User")
 @Validated
 @RestController
 @AllArgsConstructor

@@ -36,6 +36,13 @@ public class SecurityConfig {
                     registry.requestMatchers("/api/user/confirm").permitAll();
                     registry.requestMatchers("/api/user/forgot-password").permitAll();
                     registry.requestMatchers("/api/user/new-password").permitAll();
+                    registry.requestMatchers(
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-resources/**",
+                            "/swagger-ui.html",
+                            "/webjars/**"
+                    ).permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

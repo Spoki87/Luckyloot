@@ -5,6 +5,7 @@ import com.luckyloot.game.slotmachine.slot.dto.request.UpdateSlotGameRequest;
 import com.luckyloot.game.slotmachine.slot.dto.response.SlotGameResponse;
 import com.luckyloot.game.slotmachine.slot.service.SlotGameService;
 import com.luckyloot.response.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Slot game")
 @Validated
 @RestController
 @AllArgsConstructor
