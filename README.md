@@ -20,10 +20,41 @@ LuckyLoot is a backend Spring Boot application that simulates a basic online gam
 
 ## 🚀 Getting Started
 
+### 1. Clone and Run the Project
+
 ```bash
-git clone https://github.com/Spoki87/luckyloot.git
+git clone https://github.com/your-username/luckyloot.git
 cd luckyloot
 ./mvnw spring-boot:run
+```
+
+### 2. Add `application.properties`
+
+Create a file at `src/main/resources/application.properties` with the following configuration:
+
+```properties
+spring.application.name=LuckyLoot
+
+spring.datasource.url=jdbc:postgresql:
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# SMTP Mail Configuration
+spring.mail.host=
+spring.mail.port=
+spring.mail.username=
+spring.mail.password=
+mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+
+# JWT and App Config
+jwt.secret.key=
+app.base-url=
 ```
 
 ## 🛡️ Security
