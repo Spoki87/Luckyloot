@@ -23,7 +23,7 @@ LuckyLoot is a backend Spring Boot application that simulates a basic online gam
 ### 1. Clone and Run the Project
 
 ```bash
-git clone https://github.com/your-username/luckyloot.git
+git clone https://github.com/Spoki87/luckyloot.git
 cd luckyloot
 ./mvnw spring-boot:run
 ```
